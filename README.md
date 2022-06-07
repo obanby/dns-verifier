@@ -20,3 +20,25 @@ Welcome!
     
     We suggest taking a look at [GitHub flow](https://guides.github.com/introduction/flow/) to structure your commits.
 4.  [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/) once you are happy with your work. **Please leave your pull request open: we'll discuss it as a part of the interview process.**
+
+## How to run
+
+If you are running locally please follow the following steps:
+
+```shell
+  go mod download
+  cd ./cmd/verify
+  go build .
+  ./verify <config-file> <domain> <nameserver>
+```
+
+If you are using docker
+
+```shell
+    docker build -t verifyier .
+    docker run -it  verifyier <config-file> <domain> <nameserver>
+```
+
+Please note that in docker the local config directory will be located in `/app/config`
+
+`docker run -it verifyier /app/config/branch.yaml dns-exercise.dev ns-1775.awsdns-29.co.uk`
