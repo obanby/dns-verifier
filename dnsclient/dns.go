@@ -1,6 +1,7 @@
 package dnsclient
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"github.com/miekg/dns"
@@ -28,7 +29,7 @@ func WithDomain(d string) option {
 
 func WithNameServer(ns string) option {
 	return func(c *Client) error {
-		ips, err := net.LookupIP(ns)
+		ips, err := net.DefaultResolver.LookupIP(context.Background(), "ip4", ns)
 		if err != nil {
 			return err
 		}
